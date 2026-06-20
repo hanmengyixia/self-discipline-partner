@@ -91,33 +91,31 @@ self-discipline partner/
 │   └── data/
 │       └── app.db                  # SQLite 数据库文件 (运行 init.js 后生成)
 │
-├── frontend/                       # 前端应用
-│   ├── index.html                  # HTML 入口
-│   ├── package.json                # 依赖清单 (vue, pinia, uni-app)
-│   ├── vite.config.js              # Vite 配置 + API 代理
-│   ├── src/
-│   │   ├── main.js                 # 应用入口 — 创建 Vue SSR App + Pinia
-│   │   ├── App.vue                 # 根组件 — 全局 CSS 变量 & 工具类
-│   │   ├── pages.json              # uni-app 页面路由 & TabBar 配置
-│   │   ├── manifest.json           # 跨平台配置 (H5/Android/iOS/小程序)
-│   │   ├── api/
-│   │   │   └── request.js          # 网络请求封装 (自动 Token、401 拦截)
-│   │   ├── store/
-│   │   │   └── user.js             # Pinia 用户状态管理 (登录/注册/登出)
-│   │   ├── components/
-│   │   │   ├── HabitCard.vue       # 习惯打卡卡片组件
-│   │   │   └── CircularProgress.vue # SVG 环形进度条组件
-│   │   ├── pages/
-│   │   │   ├── login/login.vue     # 登录/注册页
-│   │   │   ├── index/index.vue     # 今日打卡页 (首页 Tab)
-│   │   │   ├── focus/focus.vue     # 自律钟页 (专注计时 Tab)
-│   │   │   ├── room/room.vue       # 搭子自习室页 (Tab)
-│   │   │   └── profile/profile.vue # 个人中心/统计页 (Tab)
-│   │   └── static/                 # TabBar 图标 SVG
-│   └── dist/                       # 构建产物
-│
-└── .claude/                        # Claude Code 配置
-    └── settings.local.json          # 本地权限设置
+└── frontend/                       # 前端应用
+    ├── index.html                  # HTML 入口
+    ├── package.json                # 依赖清单 (vue, pinia, uni-app)
+    ├── vite.config.js              # Vite 配置 + API 代理
+    ├── src/
+    │   ├── main.js                 # 应用入口 — 创建 Vue SSR App + Pinia
+    │   ├── App.vue                 # 根组件 — 全局 CSS 变量 & 工具类
+    │   ├── pages.json              # uni-app 页面路由 & TabBar 配置
+    │   ├── manifest.json           # 跨平台配置 (H5/Android/iOS/小程序)
+    │   ├── api/
+    │   │   └── request.js          # 网络请求封装 (自动 Token、401 拦截)
+    │   ├── store/
+    │   │   └── user.js             # Pinia 用户状态管理 (登录/注册/登出)
+    │   ├── components/
+    │   │   ├── HabitCard.vue       # 习惯打卡卡片组件
+    │   │   └── CircularProgress.vue # SVG 环形进度条组件
+    │   ├── pages/
+    │   │   ├── login/login.vue     # 登录/注册页
+    │   │   ├── index/index.vue     # 今日打卡页 (首页 Tab)
+    │   │   ├── focus/focus.vue     # 自律钟页 (专注计时 Tab)
+    │   │   ├── room/room.vue       # 搭子自习室页 (Tab)
+    │   │   └── profile/profile.vue # 个人中心/统计页 (Tab)
+    │   └── static/                 # TabBar 图标 SVG
+    └── dist/                       # 构建产物
+ 
 ```
 
 ---
