@@ -42,6 +42,46 @@ router.post('/upload', (req, res) => {
 });
 
 /**
+ * GET /api/focus/today
+ * 统计今日专注时长和次数
+ */
+router.get('/today', (req, res) => {
+  const userId = req.user.userId;
+  const db = getDatabase();
+
+  // 今天的起止时间
+  const now = new Date();
+  const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 0, 0, 0, 0);
+  const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999);
+
+  const rows = db.prepare(`
+    SELECT tag, SUM(duration) AS total_minutes, COUNT(*) AS sessions
+    FROM FocusRecords
+    WHERE user_id = ? AND start_time >= ? AND start_time <= ?
+    GROUP BY tag
+    ORDER BY total_minutes DESC
+  `).all(userId, todayStart.toISOString(), todayEnd.toISOString());
+
+  const totalMinutes = rows.reduce((sum, r) => sum + r.total_minutes, 0);
+  const totalSessions = rows.reduce((sum, r) => sum + r.sessions, 0);
+
+  return res.json({
+    code: 200,
+    msg: 'success',
+    data: {
+      date: todayStart.toISOString().split('T')[0],
+      total_minutes: totalMinutes,
+      total_sessions: totalSessions,
+      tags: rows.map(r => ({
+        tag: r.tag,
+        minutes: r.total_minutes,
+        sessions: r.sessions
+      }))
+    }
+  });
+});
+
+/**
  * GET /api/focus/summary
  * Query: ?week=2026-06-13 (某周的任意一天)
  * 按标签聚合统计本周专注时长

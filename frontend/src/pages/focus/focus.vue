@@ -254,9 +254,9 @@ async function uploadFocusRecord() {
 
 async function fetchTodaySummary() {
   try {
-    const res = await get('/api/focus/summary')
+    const res = await get('/api/focus/today')
     todayMinutes.value = res.data.total_minutes
-    todaySessions.value = res.data.tags.reduce((sum, t) => sum + 1, 0)
+    todaySessions.value = res.data.total_sessions
   } catch (e) {
     // ignore
   }
